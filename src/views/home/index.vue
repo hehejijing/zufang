@@ -9,26 +9,19 @@
     <van-icon name="guide-o" class="map-icon" />
 
     <!-- 搜索框 -->
-    <van-search
-      v-model="value"
-      show-action
-      :label="address"
-      placeholder="请输入搜索关键词"
-      @click="btn"
-    >
-      <template #action>
-        <div>搜索</div>
-      </template>
-    </van-search>
+    <van-search v-model="value" placeholder="请输入搜索关键词" :label="address"   left-icon="arrow-down"/>
+    <button class="areaBtn" @click="btn"></button>
+    <van-popup v-model="isShow"  position="bottom"
+      ><van-area
+        title="标题"
+        :area-list="areaList"
+        value="110101"
+        v-if="isShow"
+        @cancel="cancel"
+        @confirm="confirm"
+        class="area-l"
+    /></van-popup>
 
-    <van-area
-      title="标题"
-      :area-list="areaList"
-      value="110101"
-      v-if="isShow"
-      @cancel="cancel"
-      @confirm="confirm"
-    />
     <div style="display: flex; justify-content: space-between">
       <div class="chuzu" @click="tosearch">
         <img src="../../assets/imgs/1.png" alt="" />
@@ -57,7 +50,11 @@
           v-for="item in groupList"
           :key="item.id"
           class="group-item"
-          ><img :src="imgsrc + item.imgSrc" alt="" style="width: 40px;height: 40px" />
+          ><img
+            :src="imgsrc + item.imgSrc"
+            alt=""
+            style="width: 40px; height: 40px"
+          />
           <p style="fontsize: 12px">
             {{ item.title }}<br />
             {{ item.desc }}
@@ -172,6 +169,15 @@ export default {
   padding: 0 20px 0 10px;
   background-color: #fff;
   margin: 7px;
-  align-items: center
+  align-items: center;
+}
+.areaBtn {
+  background-color:black;
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  left: 48px;
+  top: 28px;
+  opacity: 0;
 }
 </style>
