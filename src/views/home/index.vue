@@ -9,9 +9,14 @@
     <van-icon name="guide-o" class="map-icon" />
 
     <!-- 搜索框 -->
-    <van-search v-model="value" placeholder="请输入搜索关键词" :label="address"   left-icon="arrow-down"/>
+    <van-search
+      v-model="value"
+      placeholder="请输入搜索关键词"
+      :label="address"
+      left-icon="arrow-down"
+    />
     <button class="areaBtn" @click="btn"></button>
-    <van-popup v-model="isShow"  position="bottom"
+    <van-popup v-model="isShow" position="bottom"
       ><van-area
         title="标题"
         :area-list="areaList"
@@ -116,73 +121,70 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
-
 .box {
   .my-swipe .van-swipe-item {
-  color: #fff;
-  font-size: 20px;
-  line-height: 212px;
-  text-align: center;
-  height: 212px;
-  /* background-color: #39a9ed; */
-}
-.my-swipe img {
-  width: 100%;
-  height: 100%;
-}
-.van-search {
-  position: absolute;
-  /* margin: 0 auto; */
-  top: 20px;
-  left: 25px;
-  height: 34px;
-}
-.box {
-  position: relative;
-}
-.map-icon {
-  position: absolute;
-  left: 345px;
-  top: -180px;
-}
-.chuzu {
-  text-align: center;
-}
-.chuzu span {
-  display: block;
-}
-.chuzu img {
-  width: 70px;
-}
-.group {
-  background-color: #f6f5f6;
-  height: 200px;
-  margin: 20px 10px;
-  padding-top: 10px;
-}
-.title {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
-}
-.group-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px 0 10px;
-  background-color: #fff;
-  margin: 7px;
-  align-items: center;
-}
-.areaBtn {
-  background-color:black;
-  position: absolute;
-  width: 60px;
-  height: 20px;
-  left: 48px;
-  top: 28px;
-  opacity: 0;
-}
-
+    color: #fff;
+    font-size: 20px;
+    line-height: 212px;
+    text-align: center;
+    height: 212px;
+    /* background-color: #39a9ed; */
+  }
+  .my-swipe img {
+    width: 100%;
+    height: 100%;
+  }
+  .van-search {
+    position: absolute;
+    /* margin: 0 auto; */
+    top: 20px;
+    left: 25px;
+    height: 34px;
+  }
+  .box {
+    position: relative;
+  }
+  .map-icon {
+    position: absolute;
+    left: 345px;
+    top: -180px;
+  }
+  .chuzu {
+    text-align: center;
+  }
+  .chuzu span {
+    display: block;
+  }
+  .chuzu img {
+    width: 70px;
+  }
+  .group {
+    background-color: #f6f5f6;
+    height: 200px;
+    margin: 20px 10px;
+    padding-top: 10px;
+  }
+  .title {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  .group-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 10px;
+    background-color: #fff;
+    margin: 7px;
+    align-items: center;
+  }
+  .areaBtn {
+    background-color: black;
+    position: absolute;
+    width: 60px;
+    height: 20px;
+    left: 48px;
+    top: 28px;
+    opacity: 0;
+  }
 }
 </style>

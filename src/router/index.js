@@ -6,6 +6,8 @@ import Search from "@/views/search";
 import News from "@/views/news";
 import My from "@/views/my";
 import Login from "@/views/login";
+import Register from "@/views/register";
+
 Vue.use(VueRouter);
 const routes = [
   {
@@ -37,6 +39,10 @@ const routes = [
       {
         path: "login",
         component: Login,
+      },
+      {
+        path: "register",
+        component: Register,
       }
     ]
   }
