@@ -15,40 +15,45 @@
     <div class="main">
       <ul>
         <li>
-          <van-icon name="star-o" size="20px"/>
+          <van-icon name="star-o" size="20px" />
           <p>我的收藏</p>
         </li>
         <li>
-          <van-icon name="wap-home-o" size="20px"/>
+          <van-icon name="wap-home-o" size="20px" />
           <p>我的出租</p>
         </li>
         <li>
-          <van-icon name="clock-o" size="20px"/>
+          <van-icon name="clock-o" size="20px" />
           <p>看房记录</p>
         </li>
         <li>
-          <van-icon name="debit-pay" size="20px"/>
+          <van-icon name="debit-pay" size="20px" />
           <p>成为房主</p>
         </li>
         <li>
-          <van-icon name="contact" size="20px"/>
+          <van-icon name="contact" size="20px" />
           <p>个人资料</p>
         </li>
         <li>
-          <van-icon name="service-o" size="20px"/>
+          <van-icon name="service-o" size="20px" />
           <p>联系我们</p>
         </li>
       </ul>
     </div>
     <div class="join">
-      <img src="../../assets/imgs/join.png" alt="">
+      <img src="../../assets/imgs/join.png" alt="" />
     </div>
   </div>
 </template>
 
 <script>
+import { getInfoApi } from "@/api";
 export default {
   name: "AA",
+  mounted() {
+    const token = JSON.parse(localStorage.getItem("token"));
+    getInfoApi(token).then(res => console.log(res))
+  },
 };
 </script>
 

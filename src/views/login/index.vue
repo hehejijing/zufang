@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { Dialog } from "vant";
+import { loginApi } from "@/api/index";
 export default {
   name: "login-index",
   data() {
@@ -34,8 +36,21 @@ export default {
     };
   },
   methods: {
-    onSubmit(values) {
-      console.log("submit", values);
+    onSubmit() {
+      if (this.username.trim() == "") {
+        return Dialog({ message: "账号不能为空" });
+      } else if (this.password.trim() == "") {
+        return Dialog({ message: "请输入密码" });
+      }
+      loginApi(this.username,this.password).then((res) => {
+        Dialog({ message: res.data.description });
+        console.log("111111111111111111111111");
+        localStorage.setItem("token", JSON.stringify(res.data.body.token));
+        console.log(res);
+        this.$router.push({
+        path: "my",
+      });
+      });
     },
     onClickLeft() {
       this.$router.push({
@@ -46,7 +61,7 @@ export default {
       this.$router.push({
         path: "register",
       });
-    }
+    },
   },
 };
 </script>
