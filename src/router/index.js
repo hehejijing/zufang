@@ -5,6 +5,7 @@ import Home from "@/views/home";
 import Search from "@/views/search";
 import News from "@/views/news";
 import My from "@/views/my";
+import Login from "@/views/login";
 Vue.use(VueRouter);
 const routes = [
   {
@@ -33,6 +34,10 @@ const routes = [
         path: "my",
         component: My,
       },
+      {
+        path: "login",
+        component: Login,
+      }
     ]
   }
 ];

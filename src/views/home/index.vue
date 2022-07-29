@@ -115,8 +115,11 @@ export default {
 };
 </script>
 
-<style>
-.my-swipe .van-swipe-item {
+<style lang="less" scoped>
+
+
+.box {
+  .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 20px;
   line-height: 212px;
@@ -179,5 +182,7 @@ export default {
   left: 48px;
   top: 28px;
   opacity: 0;
+}
+
 }
 </style>
