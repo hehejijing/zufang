@@ -26,8 +26,8 @@ export const getInfo = (token) => {
   return request({
     url: "/user",
     method: "GET",
-    params: {
-      token,
+    headers: {
+      authorization: token,
     },
   });
 };

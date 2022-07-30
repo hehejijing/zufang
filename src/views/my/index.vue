@@ -6,9 +6,9 @@
     <div class="header">
       <div class="login">
         <div class="avatar">
-          <img src="http://liufusong.top:8080/img/profile/avatar.png" alt="" />
+          <img :src="imgUrl" alt="" />
         </div>
-        <p>游客</p>
+        <p>{{ nickname }}</p>
         <van-button type="primary" to="login" size="small">去登陆</van-button>
       </div>
     </div>
@@ -50,15 +50,23 @@
 import { getInfoApi } from "@/api";
 export default {
   name: "AA",
+  data() {
+    return {
+      imgUrl: "http://liufusong.top:8080/img/profile/avatar.png",
+      nickname: "游客",
+    };
+  },
   mounted() {
     // const token = JSON.parse(localStorage.getItem("token"));
     // console.log(token);
     const token = localStorage.getItem("TOKEN");
 
-    
     console.log(token);
     getInfoApi(token).then((res) => {
       // console.log(333333333)
+      this.imgUrl = `http://liufusong.top:8080${res.data.body.avatar}`;
+      console.log(this.imgUrl);
+      this.nickname = res.data.body.nickname;
       console.log(res);
     });
   },

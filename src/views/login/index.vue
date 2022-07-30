@@ -42,14 +42,14 @@ export default {
       } else if (this.password.trim() == "") {
         return Dialog({ message: "请输入密码" });
       }
-      loginApi(this.username,this.password).then((res) => {
+      loginApi(this.username, this.password).then((res) => {
         Dialog({ message: res.data.description });
-        console.log(res);
-        const token = res.data.body.token
-        this.$store.commit('SET_TOKEN', token)
+        const token = res.data.body.token;
+        // console.log(this);
+        this.$store.commit("SET_TOKEN", token);
         this.$router.push({
-        path: "my",
-      });
+          path: "my",
+        });
       });
     },
     onClickLeft() {
