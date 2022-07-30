@@ -51,12 +51,16 @@ import { getInfoApi } from "@/api";
 export default {
   name: "AA",
   mounted() {
-    const token = JSON.parse(localStorage.getItem("token"));
+    // const token = JSON.parse(localStorage.getItem("token"));
+    // console.log(token);
+    const token = localStorage.getItem("TOKEN");
+
+    
     console.log(token);
-    getInfoApi(token).then(res => {
-      console.log(333333333)
-      console.log(res)
-    })
+    getInfoApi(token).then((res) => {
+      // console.log(333333333)
+      console.log(res);
+    });
   },
 };
 </script>
