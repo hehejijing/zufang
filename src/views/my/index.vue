@@ -52,7 +52,11 @@ export default {
   name: "AA",
   mounted() {
     const token = JSON.parse(localStorage.getItem("token"));
-    getInfoApi(token).then(res => console.log(res))
+    console.log(token);
+    getInfoApi(token).then(res => {
+      console.log(333333333)
+      console.log(res)
+    })
   },
 };
 </script>
