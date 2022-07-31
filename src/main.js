@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 import Vant from 'vant';
 import 'vant/lib/index.css';
 
+// console.log(store.state.tokenObj.token);
 Vue.use(Vant);
 // import request from '@/utils/request'
 // console.log(request);

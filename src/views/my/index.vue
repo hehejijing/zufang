@@ -9,12 +9,20 @@
           <img :src="imgUrl" alt="" />
         </div>
         <p>{{ nickname }}</p>
-        <van-button type="primary" to="login" size="small">去登陆</van-button>
+        <van-button type="primary" to="login" size="small" v-if="isShow"
+          >去登陆</van-button
+        >
+        <div v-else>
+          <van-button type="primary" @click="logout" size="small"
+            >退出</van-button
+          >
+          <p class="edit">编辑个人资料<van-icon name="play" /></p>
+        </div>
       </div>
     </div>
     <div class="main">
       <ul>
-        <li>
+        <li @click="toFavorites">
           <van-icon name="star-o" size="20px" />
           <p>我的收藏</p>
         </li>
@@ -54,21 +62,38 @@ export default {
     return {
       imgUrl: "http://liufusong.top:8080/img/profile/avatar.png",
       nickname: "游客",
+      isShow: true,
     };
   },
-  mounted() {
-    // const token = JSON.parse(localStorage.getItem("token"));
-    // console.log(token);
-    const token = localStorage.getItem("TOKEN");
+  methods: {
+    logout() {
+      this.$store.commit("SET_TOKEN", {});
 
-    console.log(token);
-    getInfoApi(token).then((res) => {
-      // console.log(333333333)
-      this.imgUrl = `http://liufusong.top:8080${res.data.body.avatar}`;
-      console.log(this.imgUrl);
-      this.nickname = res.data.body.nickname;
-      console.log(res);
-    });
+      location. reload()
+    },
+    getInfo() {
+      const token = this.$store.state.tokenObj.token;
+      if (token) {
+        this.isShow = false;
+        getInfoApi(token).then((res) => {
+          console.log(res);
+          this.imgUrl = `http://liufusong.top:8080${res.data.body.avatar}`;
+          this.nickname = res.data.body.nickname;
+        });
+      } else {
+        (this.imgUrl = "http://liufusong.top:8080/img/profile/avatar.png"),
+          (this.nickname = "游客"),
+          (this.isShow = true);
+      }
+    },
+    toFavorites() {
+      this.$router.push({
+        path: "/favorites",
+      })
+    }
+  },
+  mounted() {
+    this.getInfo();
   },
 };
 </script>
@@ -96,6 +121,9 @@ export default {
       margin-left: 37px;
       box-shadow: 0 0 10px 3px #ddd;
       text-align: center;
+      .edit {
+        margin-top: 10px;
+      }
       .avatar {
         width: 70px;
         height: 70px;

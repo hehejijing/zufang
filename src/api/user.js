@@ -22,12 +22,16 @@ export const login = (username, password) => {
   });
 };
 
-export const getInfo = (token) => {
+export const getInfo = () => {
   return request({
     url: "/user",
     method: "GET",
-    headers: {
-      authorization: token,
-    },
+
   });
 };
+
+export const getFavorites = () => {
+  return request({
+    url: "/user/favorites",
+  })
+}

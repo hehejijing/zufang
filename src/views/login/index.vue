@@ -44,7 +44,7 @@ export default {
       }
       loginApi(this.username, this.password).then((res) => {
         Dialog({ message: res.data.description });
-        const token = res.data.body.token;
+        const token = res.data.body;
         // console.log(this);
         this.$store.commit("SET_TOKEN", token);
         this.$router.push({
