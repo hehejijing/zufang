@@ -8,6 +8,8 @@ import My from "@/views/my";
 import Login from "@/views/login";
 import Register from "@/views/register";
 import Favorites from "@/views/favorites";
+import Rent from "@/views/rent";
+
 
 Vue.use(VueRouter);
 const routes = [
@@ -18,6 +20,10 @@ const routes = [
   {
     path: "/favorites",
     component: Favorites,
+  },
+  {
+    path: "/rent",
+    component: Rent,
   },
   {
     path: "/layout",

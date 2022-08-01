@@ -26,7 +26,7 @@
           <van-icon name="star-o" size="20px" />
           <p>我的收藏</p>
         </li>
-        <li>
+        <li @click="toRent">
           <van-icon name="wap-home-o" size="20px" />
           <p>我的出租</p>
         </li>
@@ -69,7 +69,7 @@ export default {
     logout() {
       this.$store.commit("SET_TOKEN", {});
 
-      location. reload()
+      location.reload();
     },
     getInfo() {
       const token = this.$store.state.tokenObj.token;
@@ -89,8 +89,13 @@ export default {
     toFavorites() {
       this.$router.push({
         path: "/favorites",
-      })
-    }
+      });
+    },
+    toRent() {
+      this.$router.push({
+        path: "/rent",
+      });
+    },
   },
   mounted() {
     this.getInfo();

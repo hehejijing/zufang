@@ -35,3 +35,9 @@ export const getFavorites = () => {
     url: "/user/favorites",
   })
 }
+
+export const getRent = () => {
+  return request({
+    url: "/user/houses",
+  })
+}
