@@ -34,26 +34,40 @@ export default {
         path: "/layout/my",
       });
     },
-    
+    getRent() {
+      getRentApi().then((res) => {
+        this.list = res.data.body;
+        console.log(this.list.length);
+      });
+    },
+    loading() {
+      this.$toast.loading({
+        message: "加载中",
+        forbidClick: true,
+      });
+    },
   },
   mounted() {
-    getRentApi().then((res) => {
-      this.list = res.data.body;
-      console.log(res);
-    });
+    this.getRent()
+    this.loading()
   },
 };
 </script>
 
 <style lang="less" scoped>
-:deep(.van-nav-bar__content) {
-  background-color: #21b97a;
+.van-nav-bar {
+  position: sticky;
+  top: 0;
+  :deep(.van-nav-bar__content) {
+    background-color: #21b97a;
 
-  .van-nav-bar__arrow,
-  .van-nav-bar__title {
-    color: #fff;
+    .van-nav-bar__arrow,
+    .van-nav-bar__title {
+      color: #fff;
+    }
   }
 }
+
 .box {
   height: 120px;
   width: 100%;

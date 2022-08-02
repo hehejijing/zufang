@@ -34,8 +34,17 @@ export default {
         path: "/layout/my",
       });
     },
+    //加载页面函数
+
+    loading() {
+      this.$toast.loading({
+        message: "加载中",
+        forbidClick: true,
+      });
+    },
   },
   mounted() {
+    this.loading();
     getFavoritesApi().then((res) => {
       this.list = res.data.body;
       console.log(this.list);
@@ -45,6 +54,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.van-nav-bar {
+  position: sticky;
+  top: 0;
+}
 :deep(.van-nav-bar__content) {
   background-color: #21b97a;
 

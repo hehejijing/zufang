@@ -44,12 +44,14 @@ export default {
       }
       loginApi(this.username, this.password).then((res) => {
         Dialog({ message: res.data.description });
-        const token = res.data.body;
-        // console.log(this);
-        this.$store.commit("SET_TOKEN", token);
-        this.$router.push({
-          path: "my",
-        });
+        console.log(res);
+        if (res.data.status == 200) {
+          const token = res.data.body;
+          this.$store.commit("SET_TOKEN", token);
+          this.$router.push({
+            path: "my",
+          });
+        }
       });
     },
     onClickLeft() {
