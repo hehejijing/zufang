@@ -9,6 +9,7 @@
         v-if="isShow"
         @cancel="cancel"
         @confirm="confirm"
+        :columns-num="2"
         class="area-l"
       >
       </van-area>
@@ -17,17 +18,18 @@
       <van-search
         v-model="value"
         placeholder="请输入搜索关键词"
-        :label="address"
         left-icon="arrow-down"
         show-action
-        ><template #label> <span @click="btn">北京</span></template>
+        ><template #label>
+          <span @click="btn">{{ address }}</span></template
+        >
         <template #action><van-icon name="location-o" /></template
       ></van-search>
     </div>
     <van-dropdown-menu>
-      <van-dropdown-item v-model="value1" title="区域"
+      <van-dropdown-item title="区域"
         ><template #default>
-          <van-picker show-toolbar title="区域" :columns="columns" /></template
+          <van-picker show-toolbar title="标题" :columns="columns" value-key="label"/> </template
       ></van-dropdown-item>
       <van-dropdown-item v-model="value2" :options="option2" />
       <van-dropdown-item v-model="value3" :options="option3" />
@@ -38,43 +40,22 @@
 
 <script>
 import { areaList } from "@vant/area-data";
-import { getCityChildrenApi ,getCityInfoApi} from "@/api";
+import { getCityInfoApi, getHouseSearchApi } from "@/api";
 export default {
   name: "AA",
   data() {
     return {
       columns: [
         {
-          text: "区域",
-          children: [],
+          label: "浙江",
+          children: [
+            
+          ],
         },
         {
-          text: "地铁",
+          label: "福建",
           children: [
-            {
-              text: "一号线",
-            },
-            {
-              text: "二号线",
-            },
-            {
-              text: "三号线",
-            },
-            {
-              text: "四号线",
-            },
-            {
-              text: "五号线",
-            },
-            {
-              text: "六号线",
-            },
-            {
-              text: "七号线",
-            },
-            {
-              text: "八号线",
-            },
+            
           ],
         },
       ],
@@ -82,10 +63,11 @@ export default {
       address: "北京",
       isShow: false,
       areaList,
-      code:'',
+      code: "",
 
       value2: "a",
       value3: 0,
+      value4: 0,
 
       option2: [
         { text: "默认排序", value: "a" },
@@ -110,21 +92,29 @@ export default {
       ],
     };
   },
-  async created() {
-    const res = await getCityInfoApi(this.address)
-    this.code = res.data.body.value
-    this.code = this.code.replace('|','%')
-    console.log(this.code);
-    const res1 = await getCityChildrenApi();
-    const cityList = res1.data.body;
-    for (let i = 0; i < cityList.length - 1; i++) {
-      const obj = { text: cityList[i].label };
-      this.columns[0].children.push(obj);
-    }
-
-    console.log(this.columns[0].children);
+  created() {
+    //   const res = await getCityInfoApi(this.address)
+    //   this.code = res.data.body.value
+    //   console.log(res);
+    //   const res1 = await getCityChildrenApi(this.code);
+    //   const cityList = res1.data.body;
+    //   for (let i = 0; i < cityList.length - 1; i++) {
+    //     const obj = { text: cityList[i].label };
+    //     this.columns[0].children.push(obj);
+    //   }
+    //   console.log(this.columns[0].children);
+    //   const res2 = await getCityApi()
+    //   console.log(res2);
+    // console.log(areaList);
+    // console.log(areaList.province_list);
+    // console.log(areaList.province_list[110000]);
+    this.getHouseSearch();
   },
-
+  // computed: {
+  //   address1() {
+  //     return this.address = '北京'
+  //   },
+  // },
   methods: {
     btn() {
       this.isShow = true;
@@ -135,9 +125,27 @@ export default {
     confirm(res, index) {
       console.log(res);
       console.log(index);
-      this.address = `${res[2].name}`;
+      this.address = `${res[1].name}`;
+      this.$forceUpdate();
       console.log(this.address);
       this.isShow = false;
+    },
+    async getHouseSearch() {
+      const res = await getCityInfoApi(this.address);
+      this.code = res.data.body.value;
+      const res1 = await getHouseSearchApi(this.code);
+      console.log(res1);
+      this.columns[0].children = res1.data.body.area.children
+      for (let i = 0; i < res1.data.body.area.children.length; i++) {
+        this.columns[0].children[i].children = res1.data.body.area.children[i].children
+      }
+      this.columns[1].children = res1.data.body.subway.children
+      // this.columns[0].text = res1.data.body.area.label;
+      // this.columns[0].children = [...res1.data.body.area.children];
+      // res1.data.body.area.children.forEach((item, index) => {
+      //   this.columns[0].children[index].text = item.label;
+       
+      // });
     },
   },
 };
@@ -152,6 +160,7 @@ export default {
   left: 51px;
   top: 8px;
   height: 34px;
+  width: 310px;
 
   .van-search__content {
     padding-left: 0;

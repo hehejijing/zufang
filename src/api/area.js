@@ -5,7 +5,7 @@ export const getCity = () => {
   return request({
     url: '/area/city',
     params: {
-      level :1
+      level :2
     }
   })
 }
@@ -24,6 +24,16 @@ export const getCityInfo = (name) => {
 export const getCityChildren = (code) => {
   return request({
     url: '/area',
+    params: {
+      id:code
+    }
+  })
+}
+
+//获取房屋查询条件
+export const getHouseSearch = (code) => {
+  return request({
+    url: '/houses/condition',
     params: {
       id:code
     }
