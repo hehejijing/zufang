@@ -15,7 +15,8 @@
       :label="address"
       left-icon="arrow-down"
     />
-    <button class="areaBtn" @click="btn"></button>
+    <button class="areaBtn" @click="$router.push('/cityList')"></button>
+    <!-- <button class="areaBtn" @click="btn"></button> -->
     <van-popup v-model="isShow" position="bottom"
       ><van-area
         title="标题"

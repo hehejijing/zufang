@@ -5,7 +5,7 @@ export const getCity = () => {
   return request({
     url: '/area/city',
     params: {
-      level :2
+      level :1
     }
   })
 }

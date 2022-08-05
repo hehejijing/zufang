@@ -9,6 +9,8 @@ import Login from "@/views/login";
 import Register from "@/views/register";
 import Favorites from "@/views/favorites";
 import Rent from "@/views/rent";
+import cityList from "@/views/citylist"
+
 
 
 Vue.use(VueRouter);
@@ -57,6 +59,10 @@ const routes = [
       },
       
     ],
+  },
+  {
+    path: "/citylist",
+    component: cityList,
   },
 ];
 const router = new VueRouter({
