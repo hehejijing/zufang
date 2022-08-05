@@ -39,3 +39,11 @@ export const getHouseSearch = (code) => {
     }
   })
 }
+
+//获取热门城市
+export const getHotCity = () => {
+  return request({
+    url: '/area/hot',
+
+  })
+}
